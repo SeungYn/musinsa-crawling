@@ -130,7 +130,7 @@ async function startCrawling(webUrl, index = 0) {
     for (let i = 0; i < currentReviewsCount; i++) {
       const review = reviews.nth(i);
 
-      // evaluate메서드는 브라우저 내부에서 함수를 실행시켜줌. 리턴 값을 노드로 반환시켜줌
+      // evaluate메서드는 브라우저 내부에서 함수를 실행시켜줌. 리턴 값을 노드에서 사용할 수 있음
       const crawlResult = await review
         .evaluate((r) => {
           // 해당 콜백함수는 브라우저에서 실행됨.
