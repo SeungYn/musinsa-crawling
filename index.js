@@ -223,7 +223,18 @@ async function startCrawling(webUrl, index = 0) {
 
       if (crawlResult === null)
         // 하나의 리뷰를 크롤링한 값이 null이면 그냥 null로 저장
-        savedReviews.set(savedReviews.size, crawlResult);
+        savedReviews.set(savedReviews.size, {
+          dataIndex: null,
+          nickname: null,
+          gender: null,
+          height: null,
+          weight: null,
+          productSize: null,
+          score: null,
+          date: null,
+          content: null,
+          likeCount: null,
+        });
       else savedReviews.set(crawlResult.dataIndex, crawlResult);
     }
 
