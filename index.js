@@ -98,7 +98,7 @@ async function startCrawling(webUrl, index = 0) {
 
   const allProductReviewsCount = await findElementBySelector(
     page,
-    '.sc-fulBNO.cMfpdL > .text-title_18px_med.font-pretendard'
+    '.GoodsReviewOtherColorSection__DropdownTriggerInputSubText-sc-unsz7z-7.hhymsm.font-pretendard'
   );
   const allProductReviewsCountText = await allProductReviewsCount.textContent();
   const countReg = /\((.+)\)/; ///\((\d+)\)/;
@@ -187,17 +187,17 @@ async function startCrawling(webUrl, index = 0) {
 
           const date = getTextBySelector(
             r,
-            '.text-body_13px_reg.sc-fXSgRJ.fCtvvK.text-gray-600.font-pretendard'
+            '.text-body_13px_reg.GoodsReviewListItemInfo__ReviewCreateAtText-sc-1nltm0g-3.btA-DQP.text-gray-600.font-pretendard'
           );
 
           const content = getTextBySelector(
             r,
-            '.text-body_13px_reg.sc-gEvDqW.gbzPRc.font-pretendard'
+            '[data-button-name="후기내용"] > p'
           );
 
           const likeCount = getTextBySelector(
             r,
-            '.sc-dcJtft.bOpOdD > span.text-body_13px_reg.font-pretendard'
+            '.ReviewListItemLikeButton__LikeIconContainer-sc-uwzf5l-0 > span.text-body_13px_reg.font-pretendard'
           );
           return {
             dataIndex,
@@ -260,7 +260,7 @@ async function startCrawling(webUrl, index = 0) {
  * @param {import('playwright').Page} page
  */
 async function clickAllProductReviews(page) {
-  await findElementAndClick(page, '.sc-lnPyOc.hhdASV');
+  await findElementAndClick(page, '[data-content-name="후기필터노출"]');
   await findElementAndClick(page, '[data-filter-value="전체상품보기"]');
 }
 
@@ -270,6 +270,7 @@ async function clickAllProductReviews(page) {
  * @param {string} selector
  */
 async function findElementAndClick(page, selector) {
+  console.log(`선택자가 ${selector}인 요소를 찾는 중 입니다.`);
   const element = await findElementBySelector(page, selector);
   await element.click();
 }
