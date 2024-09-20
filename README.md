@@ -26,3 +26,8 @@ const targetUrls = [
 ## 사용된 라이브러리
 
 `playwright`, `xlsx`
+
+# 업데이트
+
+- 24.9.20  
+  무신사 요소 클래스명 최신화

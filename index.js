@@ -8,7 +8,7 @@ const fs = require('fs');
  */
 
 const targetUrls = [
-  'https://www.musinsa.com/review/goods/3447526',
+  'https://www.musinsa.com/review/goods/3056565',
   //'https://www.musinsa.com/review/goods/3987163',
   //'https://www.musinsa.com/review/goods/3987163',
   // 'https://www.musinsa.com/review/goods/3325842',
@@ -73,7 +73,7 @@ async function startCrawling(webUrl, index = 0) {
   // Launch a new browser instance
   const browser = await chromium.launch({ headless: false });
   const browserContextOptions = {
-    viewport: { width: 1200, height: 1400 },
+    viewport: { width: 1200, height: 1100 },
     userAgent:
       'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36',
   };
