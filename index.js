@@ -8,9 +8,9 @@ const fs = require('fs');
  */
 
 const targetUrls = [
-  'https://www.musinsa.com/review/goods/3056565',
+  //'https://www.musinsa.com/review/goods/3405530',
   //'https://www.musinsa.com/review/goods/3987163',
-  //'https://www.musinsa.com/review/goods/3987163',
+  'https://www.musinsa.com/review/goods/3046316',
   // 'https://www.musinsa.com/review/goods/3325842',
   // 'https://www.musinsa.com/review/goods/3325842',
   // 'https://www.musinsa.com/review/goods/3325842',
@@ -96,10 +96,12 @@ async function startCrawling(webUrl, index = 0) {
   await clickAllProductReviews(page);
   await page.waitForTimeout(1000);
 
-  const allProductReviewsCount = await findElementBySelector(
-    page,
-    '.GoodsReviewOtherColorSection__DropdownTriggerInputSubText-sc-unsz7z-7.hhymsm.font-pretendard'
-  );
+  // const allProductReviewsCount = await findElementBySelector(
+  //   page,
+  //   '.GoodsReviewOtherColorSection__DropdownTriggerInputSubText-sc-unsz7z-7.hhymsm.font-pretendard'
+  // );
+  // findElementBySelector에서 page.getByText를 사용해 정규표현식으로 찾아오도록 변경
+  const allProductReviewsCount = await page.getByText(/상품 후기 \(\d+\)/);
   const allProductReviewsCountText = await allProductReviewsCount.textContent();
   const countReg = /\((.+)\)/; ///\((\d+)\)/;
 
@@ -288,7 +290,9 @@ async function findElementBySelector(page, selector) {
 
     return element;
   } catch (e) {
-    console.log('해당 element를 찾을 수 없어 크롤링이 종료됩니다.');
+    console.log(
+      `해당 선택자:${selector}의 element를 찾을 수 없어 크롤링이 종료됩니다.`
+    );
     console.log(e);
     await page.close();
   }
